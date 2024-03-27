@@ -77,6 +77,15 @@ export class Game {
 
   #canBePlacedOnBoard(word, position, direction) {
     // TASK #4.1: Implement the #canBePlacedOnBoard method
+    if (position) {
+      if (position.x + word.length - 1 > 15) {
+        return false
+      }
+    } else {
+      if (position.y + word.length - 1 > 15) {
+        return false
+      }
+    }
     for (let i = 0; i < word.length; i++) {
       let char = direction ? this.grid[position.x + i][position.y] : this.grid[position.x][position.y + i];
       if (char !== null && char !== word[i]) {
@@ -88,7 +97,13 @@ export class Game {
 
   #placeOnBoard(word, position, direction) {
     // TASK #4.2: Implement the #placeOnBoard method
-    
+    for (let i = 0; i < word.length; i++) {
+      if (direction) {
+        this.grid[position.x + i][position.y] = word[i]
+      } else {
+        this.grid[position.x][position.y + i] = word[i]
+      }
+    }
   }
 
   /**
