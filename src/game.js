@@ -32,7 +32,7 @@ export class Game {
   #initBag() {
     // TASK #1: Implement the initBag method
     const bag = [];
-    freq = {
+    const freq = {
       'e': 12, 'a': 9, 'i': 9, 'o': 8, 'n': 6, 'r': 6, 't': 6, 
       'd': 4, 'l': 4, 's': 4, 'u': 4, 'g': 3, 'b': 2, 'c': 2, 
       'f': 2, 'h': 2, 'm': 2, 'p': 2, 'v': 2, 'w': 2, 'y': 2, 
