@@ -49,7 +49,17 @@ export class Game {
   #initGrid() {
     // TASK #3: Implement the initGrid method
     const grid = [];
-    
+    for (let j = 0; j < 16; j++) {
+      let row = [];
+      for (let i = 0; i < 16; i++) {
+        if (j === 0 || i === 0) {
+          row.push(undefined);
+        } else {
+          row.push(null);
+        }
+      }
+      grid.push(row);
+    }
     return grid;
   }
 
