@@ -77,8 +77,13 @@ export class Game {
 
   #canBePlacedOnBoard(word, position, direction) {
     // TASK #4.1: Implement the #canBePlacedOnBoard method
-    
-    return false;
+    for (let i = 0; i < word.length; i++) {
+      let char = direction ? this.grid[position.x + i][position.y] : this.grid[position.x][position.y + i];
+      if (char !== null && char !== word[i]) {
+        return false
+      }
+    }
+    return true;
   }
 
   #placeOnBoard(word, position, direction) {
