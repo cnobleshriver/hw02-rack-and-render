@@ -73,11 +73,11 @@ export class Game {
   takeFromBag(n) {
     // TASK #5: Implement the takeFromBag method
     let n = Math.min(n, this.bag.length);
-    res = []
+    res = [];
     for (let i = 0; i < n; i++) {
-      res.push(n.shift())
+      res.push(n.shift());
     }
-    return res
+    return res;
   }
 
   #canBePlacedOnBoard(word, position, direction) {
