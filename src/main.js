@@ -20,6 +20,15 @@ window.addEventListener("DOMContentLoaded", () => {
 // safely remove this conditional after you add the play button.
 if (playButtonElement) {
   playButtonElement.addEventListener("click", () => {
-    
+    let word = document.getElementById("word").value;
+    let xInput = document.getElementById("x").value;
+    let yInput = document.getElementById("y").value;
+    let direction = document.getElementById("direction").value;
+    let isHorizontal = direction === 'horizontal';
+
+    let position = {x: parseInt(xInput), y: parseInt(yInput)};
+
+    game.playAt(word, position, isHorizontal);
+    game.render(document.getElementById("board"));
   });
 }

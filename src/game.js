@@ -72,9 +72,9 @@ export class Game {
    */
   takeFromBag(n) {
     // TASK #5: Implement the takeFromBag method
-    let n = Math.min(n, this.bag.length);
+    let k = Math.min(n, this.#bag.length);
     res = [];
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < k; i++) {
       res.push(n.shift());
     }
     return res;
@@ -82,17 +82,19 @@ export class Game {
 
   #canBePlacedOnBoard(word, position, direction) {
     // TASK #4.1: Implement the #canBePlacedOnBoard method
-    if (position) {
-      if (position.x + word.length - 1 > 15) {
+    let x = position.x;
+    let y = position.y;
+    if (direction) {
+      if (x + word.length - 1 > 15 || x < 1) {
         return false
       }
     } else {
-      if (position.y + word.length - 1 > 15) {
+      if (y + word.length - 1 > 15 || y < 1) {
         return false
       }
     }
     for (let i = 0; i < word.length; i++) {
-      let char = direction ? this.grid[position.x + i][position.y] : this.grid[position.x][position.y + i];
+      let char = direction ? this.#grid[y][x + i] : this.#grid[y + i][x];
       if (char !== null && char !== word[i]) {
         return false
       }
@@ -102,13 +104,17 @@ export class Game {
 
   #placeOnBoard(word, position, direction) {
     // TASK #4.2: Implement the #placeOnBoard method
+    let x = position.x;
+    let y = position.y;
     for (let i = 0; i < word.length; i++) {
+      console.log("placing: " + word[i] + " at " + x+i + " , " + y);
       if (direction) {
-        this.grid[position.x + i][position.y] = word[i]
+        this.#grid[y][x + i] = word[i]
       } else {
-        this.grid[position.x][position.y + i] = word[i]
+        this.#grid[y + i][x] = word[i]
       }
     }
+    console.log(this.#grid);
   }
 
   /**
@@ -140,7 +146,24 @@ export class Game {
 
   render(element) {
     // TASK #7: Implement the render method
-    
+    element.innerHTML = "";
+    for (let i = 1; i <= 15; i++) {
+      for (let j = 1; j <= 15; j++) {
+        let div = document.createElement("div");
+        let cell = this.#grid[j][i];
+        if (cell) {
+          div.innerText = cell;
+        } else {
+          div.innerText = "";
+        }
+        div.classList.add("grid-item");
+        let scoringClass = scoring.label(i, j);
+        if (scoringClass) {
+          div.classList.add(scoringClass);
+        }
+        element.appendChild(div);
+      }
+    }
   }
 
   // These functions are used by the auto-grader to check your implementation.
