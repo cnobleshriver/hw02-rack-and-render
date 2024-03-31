@@ -49,10 +49,11 @@ export class Game {
   #initGrid() {
     // TASK #3: Implement the initGrid method
     const grid = [];
-    for (let j = 0; j < 16; j++) {
+    grid.push(undefined)
+    for (let j = 1; j < 16; j++) {
       let row = [];
       for (let i = 0; i < 16; i++) {
-        if (j === 0 || i === 0) {
+        if (i === 0) {
           row.push(undefined);
         } else {
           row.push(null);
@@ -107,7 +108,6 @@ export class Game {
     let x = position.x;
     let y = position.y;
     for (let i = 0; i < word.length; i++) {
-      console.log("placing: " + word[i] + " at " + x+i + " , " + y);
       if (direction) {
         this.#grid[y][x + i] = word[i]
       } else {
